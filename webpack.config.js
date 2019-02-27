@@ -17,13 +17,13 @@ dotenv.config();
 const mode = process.env.BUILD_MODE || 'production'; // "production" | "development"
 const projectName = process.env.PROJECT_NAME || 'template';
 
-const entryGlobObject = {}
+const entryFiles = {}
 for (const entryFilePath of glob.sync(`./js/${projectName}/*.js`)) {
-  entryGlobObject[path.basename(entryFilePath, '.js')] = entryFilePath
+  entryFiles[path.basename(entryFilePath, '.js')] = entryFilePath
 }
 
 let config = {
-  entry: entryGlobObject,
+  entry: entryFiles,
   mode: mode,
   output: {
     path: path.resolve(__dirname, 'js'),
@@ -62,4 +62,7 @@ let config = {
   ],
 };
 
-export default config;
+export {
+  config as default,
+  entryFiles,
+}

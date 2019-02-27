@@ -10,5 +10,5 @@ package-lock.json
 *.psb
 
 # Precompiled and transpiled files.
-styles/*-*-by-getecom-pl.css
-js/*-*-by-getecom-pl.webpack.js
+styles/*-*.css
+js/*-*.webpack.js

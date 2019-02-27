@@ -10,15 +10,17 @@
  */
 
 import dotenv        from 'dotenv'
+import glob          from 'glob'
 import gulp          from 'gulp'
 import gutil         from 'gulp-util'
 import using         from 'gulp-using'
 import rename        from 'gulp-rename'
+import replace       from 'gulp-string-replace'
 import webdav        from 'gulp-webdav-sync'
 import plumber       from 'gulp-plumber'
 
 import webpack       from 'webpack'
-import webpackConfig from './webpack.config.js'
+import webpackConfig, { entryFiles as webpackEntry } from './webpack.config.js'
 import sourcemaps    from 'gulp-sourcemaps'
 
 import less          from 'gulp-less'
@@ -314,10 +316,27 @@ function errorHandler( error ) {
  */
 function WebDAVDeployFile( path ) {
     gutil.log( path )
-    return gulp.src( [ `./${path}` ] )
+    let headerReplacer = false
+    if (path.indexOf('header.tpl') !== -1) headerReplacer = true
+    const src = gulp.src( [ `./${path}` ] )
         .pipe( plumber( {
             errorHandler: errorHandler
         } ) )
+    if (headerReplacer) {
+        src.pipe( replace( '<!-- template-scripts-needle -->', () => {
+            let html = ''
+            
+            for (const outputFile of glob.sync(`./js/${config.projectName}-*.webpack.js`)) {
+                html += `<script type="text/javascript" src="{$path}${outputFile.replace(/^\./, '')}"></script>`
+            }
+            // for (let i in webpackEntry) {
+            //     if ( ! webpackEntry.hasOwnProperty(i) ) continue
+            //     html += `<script type="text/javascript" src="{$path}js/${config.projectName}-${i}.webpack.js"></script>`
+            // }
+            return html
+        }) )
+    }
+    return src
         .pipe( webdav( config.WebDAV ) )
         .pipe( using( { prefix:'WebDAV', color:'green' } ) )
 }
