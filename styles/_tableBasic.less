@@ -1,0 +1,207 @@
+table {
+    a {
+        text-decoration: underline;
+    }
+
+    &.table{
+        width: 100%;
+        max-width: 100%;
+        border-top: 1px solid @tableBorder;
+        border-left: 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+
+        thead {
+            td {
+                padding: 0.6em 0.7em;
+                background-color: transparent;
+                color: inherit;
+                font-size: 1em;
+                text-transform: uppercase;
+                text-align: center;
+            }
+        }
+
+        tbody {
+            border-bottom: 1px solid @greyFont;
+        }
+
+        tr {
+            &:first-child {
+                td, th {
+                    border-top: 0;
+                }
+            }
+        }
+
+        td {
+            padding: 5px 8px;
+            line-height: 20px;
+            text-align: left;
+            vertical-align: middle;
+            border-right: 1px solid @tableBorder;
+            border-bottom: 1px solid @tableBorder;
+            display: table-cell;
+            float: none;
+            margin-left: 0;
+
+            &:last-child {
+                border-right: none;
+            }
+
+            &.cell-center {
+                text-align: center;
+            }
+
+            .smalldate {
+            	margin-left: 0.5em;
+            }
+        }
+
+        .s-grid-1 {
+            width: 44px;   
+        }
+
+        .s-grid-2 {
+            width: 124px;
+        }
+
+        .s-grid-3 {
+            width: 204px;
+        }
+
+        .s-grid-4 {
+            width: 284px;
+        }
+
+        .s-grid-5 {
+            width: 364px;
+        }
+
+        .s-grid-6 {
+            width: 444px;
+        }
+
+        .s-grid-7 {
+            width: 524px; 
+        }
+
+        .s-grid-8 {
+            width: 604px;
+        }
+
+        .s-grid-9 {
+            width: 684px;
+        }
+
+        .s-grid-10 {
+            width: 764px;
+        }
+
+        .s-grid-11 {
+            width: 844px;
+        }
+
+        .s-grid-12 {
+            width: 924px;
+        }
+
+        .f-row {
+            td, th {
+               -webkit-box-sizing: border-box;
+               -moz-box-sizing: border-box;
+               box-sizing: border-box; 
+            }
+
+            [class*="f-grid"] {
+                margin-left: 0;
+            }
+
+            .f-grid-1 {
+                width: 8.33%;
+            }
+
+            .f-grid-2 {
+                width: 16.66%;
+            }
+
+            .f-grid-3 {
+                width: 25%
+            }
+
+            .f-grid-4 {
+                width: 33.33%;
+            }
+
+            .f-grid-5 {
+                width: 41.66%;
+            }
+
+            .f-grid-6 {
+                width: 50%;
+            }
+
+            .f-grid-7 {
+                width: 58.33%;
+            }
+
+            .f-grid-8 {
+                width: 66.66%;
+            }
+
+            .f-grid-9 {
+                width: 75%;
+            }
+
+            .f-grid-10 {
+                width: 83.33%;
+            }
+
+            .f-grid-11 {
+                width: 91.66%;
+            }
+
+            .f-grid-12{
+                width: 100%;
+            }
+        }
+
+        &.zebra {
+            tbody {
+                tr {
+                    &:nth-child(odd) {
+                        background-color: transparent; 
+                    }
+
+                    &:nth-child(even) {
+                        background-color: @tableZebraColor;
+                    }
+                }
+            }
+        }
+
+        &.table-dark {
+            background: @tableDarkBg;
+            border-color: @tableDarkBorder;
+            color: @colorWhite;
+
+            td, th {
+                border-color: @tableDarkBorder;
+            }
+        }
+    }
+
+    &.payable {
+		.sum, .status, .parcel {
+    		text-align: center;
+    	}	
+    }
+
+    .no-border {
+        border: none;
+
+        tr, td, th {
+            border: none;
+        }
+    }
+}

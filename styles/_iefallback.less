@@ -1,0 +1,172 @@
+html {
+	&:not(.lt-ie9) {
+	    select {
+	        &:active {
+	            border-color: @maincolor;
+	            color: @colorWhite;
+	            background: @maincolor url("../images/ico_arrow_down_light.png") no-repeat 95% 50%;
+
+	            option {
+	                background-color: @colorWhite;
+	                color: @fontBasicColor;
+	            }
+	        }
+	    }  
+    }
+
+    &.lt-ie9 {
+    	select {
+    		background-image: none;
+    		padding: 0.6em;
+    	}
+    } 
+}
+
+.lt-ie8 {
+	.container {
+		width: 992px
+	}
+
+	.menu-mobile {
+		display: none;
+	}
+
+	header {
+		.search-form {
+			width: 335px;
+		}
+
+		.login-bar {
+			li {
+				float: left;
+
+				&.login {
+					width: 95px;
+				}
+			}
+		}
+
+		.basket {
+			width: 180px;
+		}
+	}
+
+	#box_search .search-input {
+		min-height: 30px;
+		height: 30px;
+	}
+
+	.btn {
+        &.addtobasket, .availability-notifier-btn, .availability-notifier-unsubscribe-btn {
+            min-width: 7em;
+        }
+	}
+
+	.layer-mask, .mask {
+		background-color: @colorBlack;
+		filter: alpha(opacity=70);
+	}
+
+	.modal.modal-not-visible {
+		filter: alpha(opacity=0);
+	}
+
+	a {
+		&.quickview {
+			width: 23px;
+		}
+
+		&.breadcrumb-home {
+			width: 30px;
+			display: block;
+		}
+	}
+
+	#box_producers .producers_wrap select, select {
+		min-height: 20px;
+	}
+
+	.radio-wrap {
+		display: inline;
+		width: auto;
+		height: auto;
+		border: none;
+		background-color: transparent;
+		position: static;
+		margin: 0;
+		top: 0;
+
+		input[type="radio"] {
+			visibility: visible;
+			position: static;
+		}
+
+		label {
+			display: none;
+		}
+	}
+
+	.checkbox-wrap-yesno {
+		display: inline;
+		background-color: transparent;
+		margin: 0;
+		position: static;
+		font-size: 1em;
+		padding: 0;
+		line-height: inherit;
+
+		input[type="checkbox"] {
+			visibility: visible;
+			position: static;
+			margin: 0;
+		}
+
+		label {
+			display: none;
+		}
+	}
+
+	#cart-options {
+	    .delivery-container, .payment-container {
+	        .delivery, .payment{
+	            .name{
+	            	padding-left: 0;
+
+	                &:before{
+	                    display: none;
+	                }
+
+	                &:after{
+                		display: none;
+	                }
+	            }
+	        }
+	    }
+	}
+
+	#box_basketaddress {
+	    table {
+	        width: 100%;
+
+	        td.input {
+	        	width: 300px;
+	        }
+	    }
+	}
+
+	#box_slider {
+	    .slides {
+	        li {
+	            width: 980px;
+	        }
+	    }
+    }
+
+    .s-grid-3 {
+    	width: 252px;
+    }
+
+    .s-grid-9 {
+    	width: 720px;
+    }
+}

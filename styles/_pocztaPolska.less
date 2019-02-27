@@ -1,0 +1,278 @@
+@ppMapLoaderBgColor: #e5e3df;
+@ppOutpostsBorderColor: #dbdbdb;
+@ppOutpostsHeaderBorderColor: #bbbbbb;
+@ppOutpostsItemActive: #e2e2e2;
+@ppOutpostsItemInactive: #f0f0f0;
+@ppPrepaymentInfoColor: #353535;
+@ppPrepaymentInfoBorder: #787878;
+@ppPaymentDisabled: #bcbcbc;
+@headerColor: #D8D8D8;
+
+#pp-pick-up-map {
+	width: 500px;
+	min-width: 100%;
+	height: 500px;
+}
+
+.hide-map {
+	width: 0;
+	height: 0;
+}
+
+.pac-container {
+	z-index: 10002;
+}
+
+.pp-pick-up-points {
+	display: flex;
+
+	&__modal {
+		.modal-body {
+			position: relative;
+		}
+	}
+
+	&__map-loader {
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: @ppMapLoaderBgColor;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__map-loader-content {
+		font-size: 2em;
+		display: inline-block;
+	}
+
+	&__outposts {
+		li {
+			list-style-type: none;
+		}
+
+		> li {
+			border-top: 1px solid @ppOutpostsBorderColor;
+			cursor: pointer;
+
+			&:first-child {
+				border-top: none;
+			}
+		}
+
+		&-item {
+			padding: 0.4em;
+		}
+
+		.pp-pick-up-points__infoBtnSelect {
+			margin: 0.5em 0 0 auto;
+			display: block;
+		}
+	}
+
+	&__prepayment-info {
+		display: none;
+	}
+
+	&__outposts-container {
+		overflow-y: auto;
+		max-height: 500px;
+		min-width: 200px;
+		max-width: 300px;
+		padding: 0 1em;
+	}
+
+	&__header {
+		margin: 0;
+		padding: 0.5em;
+		border-bottom: 1px solid @ppOutpostsHeaderBorderColor;
+		font-size: 1.3em;
+	}
+
+	&__search-container {
+		width: 90%;
+		margin: 0.5em 0;
+	}
+
+	&__search {
+		width: 100%;
+		padding: 0.5em;
+		font-size: 1.2em;
+	}
+
+	&__infoOpenHours {
+		display: none;
+	}
+
+	&__footer {
+		margin-top: 0.8em;
+
+		button {
+			display: block;
+		}
+	}
+
+	.btn-right {
+		margin: 0 0 0 auto;
+	}
+}
+
+.outpost {
+	&__street {
+		display: inline-block;
+		padding: 0.5em 0;
+		margin: 0;
+	}
+
+	&__name {
+		font-weight: bold;
+		margin: 0;
+	}
+
+	&__description {
+		list-style: circle inside;
+	}
+
+	&__description-item {
+		margin: 0.2em;
+	}
+
+	&__header {
+		border-top: none;
+		padding-top: 0.8em;
+		padding-bottom: 0.8em;
+	}
+
+	&__figure {
+		float: left;
+		margin: 0 1em 0 0;
+	}
+
+	&_active {
+		background-color: @ppOutpostsItemActive;
+	}
+
+	&__prepayment-info {
+		display: none;
+	}
+
+}
+
+.pp-point-only-prepayment__label {
+	display: none;
+}
+
+.pp-point-payment-disabled {
+	.pp-point-only-prepayment__label {
+		display: inline-block;
+	}
+}
+
+.pp-point-payment-disabled {
+	.name {
+		color: @ppPaymentDisabled;
+	}
+
+	.pp-point-only-prepayment__label {
+		margin-right: 0.5em;
+		font-size: 0.8em;
+		color: @ppPrepaymentInfoColor;
+		padding: 0.3em;
+		border: 1px solid @ppPrepaymentInfoBorder;
+		border-radius: 0.4em;
+		text-transform: uppercase;
+
+		&-desc {
+			border: none;
+			text-transform: lowercase;
+		}
+	}
+}
+
+.pp-pick-up-points__prepayment-info, .outpost__prepayment-info, .pp-point-only-prepayment__label {
+	margin-right: 0.5em;
+	font-size: 0.8em;
+	color: @ppPrepaymentInfoColor;
+	padding: 0.3em;
+	border: 1px solid @ppPrepaymentInfoBorder;
+	border-radius: 0.4em;
+	text-transform: uppercase;
+}
+
+.pp-pick-up-points_only-prepayment {
+	.outpost {
+		&__prepayment-info {
+			float: right;
+		}
+
+		&__only-prepayment {
+			background-color: @ppOutpostsItemInactive;
+
+			.pp-pick-up-points__infoBtnSelect {
+				display: none;
+			}
+		}
+
+		&_active {
+			background-color: @ppOutpostsItemActive;
+		}
+	}
+
+	.pp-pick-up-points__prepayment-info, .outpost__prepayment-info {
+		display: block;
+	}
+
+	.pp-pick-up-points {
+		&__prepayment-info {
+			text-align: center;
+			max-width: 100px;
+		}
+
+		&__info-window_only-prepayment {
+			.pp-pick-up-points__infoBtnSelect {
+				display: none;
+			}
+		}
+	}
+}
+
+.pp-point-delivery-details {
+	margin-left: 2.4em;
+
+	& + .pp-pick-up-points {
+		margin-left: 2.4em;
+	}
+
+	&__header {
+		border-bottom: 1px solid @headerColor;
+		padding: 0.4em;
+	}
+
+}
+
+@media screen and (max-width: 800px) {
+	.pp-pick-up-points {
+		&__outposts-container {
+			display: none;
+		}
+
+		&__infoOpenHours {
+			display: block;
+		}
+
+		&__modal {
+			.modal-body {
+				padding: 0;
+			}
+
+			.modal-header {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

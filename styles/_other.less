@@ -1,0 +1,310 @@
+.skinpreview {
+    background-color: @maincolor;
+    position: fixed;
+    right: 1em;
+    top: 1.2em;
+    cursor: pointer;
+    padding: 0.7em 1em;
+    color: @colorWhite;
+    text-decoration: none;
+    opacity: 0.3;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+form {
+    .stocks {
+        .short {
+            width: 30px;
+        }
+    }
+}
+
+.widget{
+    position: fixed;
+    right: 0;
+    top: 20%;
+    z-index: 1000;
+
+    .widget-inner {
+        background-color: @maincolor;
+        color: @colorWhite;
+        float: left;
+        padding: 0.55em 0.55em 0.55em 0.5em;
+        width: 22em;
+    }
+
+    .widget-front {
+        float: left;
+        background-color: @maincolor;
+        padding: 1em;
+        cursor: pointer;
+
+        span {
+            color: @colorWhite
+        }
+    }
+}
+
+.basket-contain {
+    position: absolute;
+    z-index: 999;
+    background-color: @colorWhite;
+    display: none;
+
+    .basket-products {
+        padding: 1em;
+        border-top: 1px solid @borderColor;
+        border-left: 1px solid @borderColor;
+        border-right: 1px solid @borderColor;
+
+        li {
+            position: relative;
+
+            img {
+                max-width: 70px;
+                margin-right: 0.8em;
+            }
+
+            .product-name {
+                display: inline-block;
+                width: 49%;
+                vertical-align: middle;
+
+                .product-variant {
+                    display: block;
+                    font-size: 0.8em;
+                    color: @greyFont;
+                }
+            }
+
+            .product-info {
+                display: inline-block;
+                text-align: right;
+                width: 23%;
+                font-weight:bold;
+                padding: 1.5em 0;
+            }
+
+            .remove-product {
+                position: absolute;
+                right: 0;
+                top: 0;
+                cursor: pointer;
+                font-size: 0.9em;
+                color: @menuCountColor;
+            }
+        }
+    }
+    
+    .basket-summery {
+        background-color: @maincolor;
+        color: @colorWhite;
+        padding: 1.3em;
+
+        a {
+            .box-sizing();
+
+            background-color: @colorWhite;
+            padding: 5px 10px; 
+            vertical-align: middle;
+            width: 18%;
+            text-align: center;
+            display: inline-block;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        .basket-price {
+            .box-sizing();
+
+            font-size: 1.2em;
+            text-align: right;
+            max-width: 81%;
+            width: 81%;
+            vertical-align: middle;
+            display: inline-block;
+        }
+    }
+}
+
+.order-details.f-row {
+    margin: 3em 0 3em;
+    display: table;
+
+    .f-grid-4 {
+    	display: table-cell;
+		height: 100%;
+		float: none;
+		vertical-align: top;
+		width: 33.333%;
+
+        &:not(:last-child) {
+            border-right: 1px solid @borderColor;
+        }
+
+        &:not(:first-child) {
+            padding-left: 2em;
+        }
+    }
+}
+
+.noform {
+    text-align: right;
+}
+
+.slider {
+    .innerbox {
+        overflow: hidden;
+    }
+
+    .slider-wrap {
+        .product {
+            padding: 0;
+            border: none;
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+
+            form, .price.right {
+                float: none;
+            }
+        }
+    }
+
+    .slider-nav-left, .slider-nav-right {
+        position: absolute;
+        top: 50%;
+        width: 3.5em;
+        height: 3.5em;
+        margin-top: -2em;
+        cursor: pointer;
+        visibility: hidden;
+    }
+
+    .slider-nav-left {
+        left: 0.2em;
+        background: rgba(255, 255, 255, 0.7) url('../images/ico_arrow_left_small.png') center center no-repeat;
+    }
+
+    .slider-nav-right {
+        right: 0.2em;
+        background: rgba(255, 255, 255, 0.7) url('../images/ico_arrow_right_small.png') center center no-repeat;
+    }
+
+    &:hover {
+        .slider-nav-left, .slider-nav-right {
+            visibility: visible;
+        }
+    }
+}
+
+#cookie {
+    background-color: @cookieBg;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1em 0;
+    color: @fontBasicColor;
+    z-index: 9000;
+
+    a {
+        text-decoration: underline;
+    }
+
+    .close {
+        font-size: 1.6em;
+        padding: 0.4em 0.6em;
+        cursor: pointer;
+        position: relative;
+        top: 0.15em;
+        z-index: 5;
+    }
+}
+
+.up{
+    position: fixed;
+    bottom: 100px;
+    right: 50px;
+    z-index: 5;
+
+    span{
+        display: none;
+    }
+
+    .btn{
+        color: @colorWhite;
+    }
+}
+
+#box_404{
+    form{
+        margin-top: 2em;
+    }
+
+    .search {
+        max-width: 284px;
+    }
+}
+
+.ajaxlayer {
+    cursor: pointer;
+}
+
+.address-handler {
+    > [class*="social-btn-login"] {
+        &:first-child {
+            &::before {
+                content: attr(data-text-start);
+                display: block;
+                font-size: 1.4em;
+                text-align: center;
+                margin-top: 2.5em;
+                margin-bottom: 1em;
+                width: 70%;
+            }
+        }
+
+        + :not([class*="social-btn-login"]) {
+            &::before {
+                content: attr(data-text-end);
+                display: block;
+                font-size: 1.4em;
+                margin-bottom: 0.8em;
+                text-align: center;
+                margin-top: 1em;
+                width: 70%;
+            }
+        }
+    }
+}
+
+.shop {
+    &_offline {
+        padding-top: 40px;
+
+        &::before {
+            content: attr(data-message);
+
+            background-color: #313238;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            color: #dce1e9;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.75rem;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 500;
+        }
+    }
+}

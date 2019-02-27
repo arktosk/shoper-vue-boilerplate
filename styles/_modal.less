@@ -1,0 +1,159 @@
+.modal {
+	.transition(all 0.4s ease);
+	.box-shadow(0 0 8px 0 rgba(0, 0, 0, 0.4));
+
+	z-index: 10001;
+	display: inline-block;
+	background-color: @colorWhite;
+
+	&.modal-not-visible {
+		.translate(0, -5em);
+
+		opacity: 0;
+	}
+
+	&.modal-visible {
+		.translate(0, 0);
+
+		opacity: 1;
+		z-index: 10001;
+	}
+
+	&.modal-hidden {
+		z-index: -99999;
+	}
+
+	&.modal-alert {
+		text-align: center;
+		min-width: 280px;
+	}
+
+	.modal-header {
+		background-color: @maincolor;
+		padding: 1em 1.5em;
+		color: @colorWhite;
+		margin-bottom: 2em;
+		text-align: left;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+
+		h3 {
+			margin: 0;
+			display: inline-block;
+			font-size: 1.2em;
+			line-height: inherit;
+			color: @colorWhite;
+			-webkit-flex-basis: 70%;
+			-ms-flex-preferred-size: 70%;
+			flex-basis: 70%;
+		}
+
+		.modal-close {
+			cursor: pointer;
+			-webkit-flex-basis: 30%;
+			-ms-flex-preferred-size: 30%;
+			flex-basis: 30%;
+			text-align: right;
+
+			&::after {
+				content: 'x';
+				font-weight: bold;
+				margin-left: 0.5em;
+				font-size: 1.4em;
+				position: relative;
+				top: 0.05em;
+			}
+		}
+	}
+
+	.modal-body {
+		padding: 0em 2em 2em 2em;
+
+		.search-form {
+			.search-input {
+				width: 70%;
+				padding: 0.4em 0.3em;
+				text-align: left;
+			}
+
+			.search-btn {
+				width: 24%;
+				padding: 7px 0;
+				background-color: @maincolor;
+				border: none;
+
+				img {
+					background: url("../images/ico_loupe.png") no-repeat 50% 50% transparent;
+					width: 23px;
+					height: 23px;
+					display: inline-block;
+				}
+
+				span {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.modal-footer {
+		margin-bottom: 2em;
+		overflow: hidden;
+
+		a {
+			text-transform: uppercase;
+		}
+	}
+}
+
+.mask {
+	z-index: 9000;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0);
+    background-image: radial-gradient(ellipse farthest-corner at center center , rgba(127, 127, 127, 0.5), rgba(127, 127, 127, 0.5) 35%, rgba(0, 0, 0, 0.7) 100%) !important;
+}
+
+.mask_box{
+    background-color: @colorWhite;
+    padding: 1em 2em;
+    position: relative;
+
+    .close{
+        position: absolute;
+        top: -1.3em;
+        right: -1.1em;
+        cursor: pointer;
+
+        &:before{
+            .fontawesome;
+
+            content: "\f00d";
+            font-size: 1.2em;
+            color: @colorWhite;
+        }
+    }
+
+    label {
+        display: block;
+    }
+}
+
+.ask-for-product {
+	max-width: 400px;
+
+	.container {
+		width: auto;
+
+		.alert-success {
+			> .icon-remove {
+				display: none !important;
+			}
+		}
+	}
+}

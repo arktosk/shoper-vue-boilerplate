@@ -1,0 +1,44 @@
+.slider {
+	//position: relative;
+	//text-align: center;
+	//padding: 0 6px 0 10px;
+
+	.slider-wrapper {
+		overflow: hidden;
+		margin: 0 auto;
+
+		[data-slider="true"] {
+			overflow: hidden;
+			display: inline-block;
+			position: relative;
+
+			li {
+				float: left;
+				margin-right: 4px;
+
+				/* test */
+				border: 1px solid #D8D8D8;
+			}
+		}
+	}
+
+	.slider-controls {
+		[class*="slider-control"] {
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			background-color: red;
+			top: 15px;
+			z-index: 10;
+			cursor: pointer;
+		}
+
+		.slider-control-next {
+			right: 0;
+		}
+
+		.slider-control-prev {
+			left: 0;
+		}
+	}
+}

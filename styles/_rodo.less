@@ -1,0 +1,59 @@
+@linkColor: #FB5642;
+
+.rodo {
+	.f-row, .s-row {
+		.center-row {
+			margin-left: auto;
+			margin-right: auto;
+			float: none;
+		}
+	}
+
+	&__container {
+		margin-bottom: 10em;
+
+		p {
+			margin: 1em 0;
+		}
+
+		input[type="text"] {
+			width: 100%;
+		}
+
+		.btn {
+			&[type="submit"] {
+				width: 100%;
+			}
+		}
+	}
+
+	&__expired-section {
+		text-align: center;
+
+		.boxhead {
+			border: none;
+		}
+	}
+	
+	&__list {
+		list-style-type: disc;
+		list-style-position: inside;
+	}
+	
+	a {
+		color: @linkColor;
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.bottombuttons {
+		text-align: center;
+
+		[data-rodo-convert-size] {
+			white-space: nowrap;
+		}
+	}
+}

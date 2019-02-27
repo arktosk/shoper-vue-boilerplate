@@ -1,0 +1,391 @@
+body {
+    .fontface;
+
+    color: @fontcolor;
+    background-color: @bgcolor;
+    font-size: @fontsize;
+    line-height: 18px;
+}
+
+a {
+	color: @acolor;
+	text-decoration: none;
+
+	&:hover {
+		color: @maincolor;
+
+		img {
+		    text-decoration: none;
+		}
+	}
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 10px 0 0;
+  font-family: inherit;
+  font-weight: normal;
+  line-height: 21px;
+  color: @fontcolor;
+}
+
+h1, h2, h3 {
+  line-height: 35px;
+}
+
+h1 {
+  font-size: @fontsize2;
+}
+
+h2 {
+  font-size: @fontsize2;
+}
+
+h3 {
+  font-size: @fontsize2;
+}
+
+h4 {
+  font-size: @fontsize2;
+  margin-bottom: 0.8em;
+}
+
+h5 {
+  font-size: 15px;
+}
+
+h6 {
+  font-size: 13px;
+}
+dl {
+  margin-bottom: 10px;
+}
+
+dt, dd {
+  line-height: 20px;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 10px;
+}
+
+em {
+    font-style: normal;
+}
+
+ul {
+  margin-left: 0;
+  list-style: none;
+}
+
+ol {
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+ul li, ol li{
+    line-height: 20px;
+    margin-bottom: 0;
+}
+
+ul.inline > li,
+ol.inline > li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+header {
+    border-top: 5px solid @maincolor;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: url('../images/logo_background.png') center center no-repeat;
+
+    &.checkout {
+        padding: 3em 0;
+    }
+    
+    .login-bar {
+        margin-bottom: 10px;
+
+        a {
+            color: @maincolor;
+        }
+    }
+    
+    .logo-bar {
+        .link-logo {
+            font-size: 2em;
+            
+            &.link-logo-text {
+                margin-top: 0.5em;
+            }
+        }
+        
+        .basket {
+            height: 44px;
+            line-height: 42px;
+            border: 1px solid @borderColor;
+            margin-left: 10px;
+            padding: 0 3em 0 1em;
+            background: url("../images/ico_arrow_down_small.png") no-repeat 96% 50% @colorWhite;
+            min-width: 220px;
+
+            &.empty-basket {
+                background: @colorWhite;
+            }
+
+            > a.count {
+                &::before {
+                    font-family: 'rwd-custom';
+                    speak: none;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    content: "\e600";
+                    font-size: 2em;
+                    position: relative;
+                    top: 7px;
+                    left: -3px;
+                }
+            }
+            
+            img {
+                display: none;
+            }
+            
+            b {
+                font-weight: normal;
+            }
+            
+            .count {
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .search-form {
+            margin-bottom: 10px;
+            
+            .search-input {
+                height: 46px;
+                min-height: 46px;
+            }
+            .btn {
+                width: 46px;
+                height: 46px;  
+                padding: 0;   
+                                    
+                &::before {
+                    display: inline-block;
+                    font-family: FontAwesome;
+                    font-style: normal;
+                    font-weight: normal;
+                    line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    content: "\f002";
+                    font-size: 1.5em;
+                }
+                
+                span{
+                    display: none;
+                }
+            }
+        }  
+        
+        .search {
+            &__container {
+                float: right;
+                max-width: 284px;
+                width: 100%;
+            }
+
+            // float: right;
+            // width: 100%;
+            
+            &__input {
+                height: 44px;
+            }
+
+            .btn {
+                height: 44px;
+            }
+        }
+    }
+}
+
+footer{
+    margin-bottom: 10px;
+    padding-bottom: 0.5em;
+
+    .bottom-footer {
+        margin-bottom: 1em;
+        overflow: hidden;
+
+        > div {
+        	.box-sizing();
+
+            margin-left: 0;
+            margin-bottom: 0.5em;
+            color: @colorWhite;
+            clear: both;
+            overflow: hidden;
+
+            &::before, &::after {
+                font-family: FontAwesome;
+                font-weight: normal;
+                font-style: normal;
+                text-decoration: inherit;
+                -webkit-font-smoothing: antialiased;
+                font-size: 4em;
+                float: left;
+                line-height: 1;
+                margin-right: 0.3em;
+            }
+
+            p {
+                font-size: 1.3em;
+                line-height: 1;
+                float: left;
+                padding-top: 0.1em;
+
+                strong {
+                    clear: both;
+                    display: block;
+                    font-size: 1.7em;
+                }
+            }
+        }
+
+        #shipment-info {
+            background-color: @maincolor;
+            float: left;
+            width: 49%;
+
+            &::before {
+                content: "\f0d1";
+            };
+
+            &::after {
+                content: "\f105";
+                position: absolute;
+                right: 0;
+            }
+        }
+
+        #contact-info {
+            float: right;
+            width: 49%;
+
+            &::before {
+                content: "\f098";
+            };
+
+            &::after {
+                content: "\f105";
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+        
+    .innerfooter{       
+        ul{
+            
+            li{              
+                padding: 0.2em 0;
+                cursor: pointer;
+
+                &.head{
+                    padding-top: 0;
+                    padding-bottom: 15px;
+                    font-weight: 700;
+                    background-color: @colorWhite;
+                    margin-bottom: 1px;
+                    position: relative;
+                    display: block;
+                }
+
+                a {
+                    img {
+                        display: none;
+                    }
+                }
+            }
+            &.overall{
+                margin: 0;
+
+                > li {
+                    border-top: 2px solid;
+                    padding-top: 2.5em;
+                    margin-top: 0.5em;
+
+                    &.flex-1 {
+                        padding-top: 1.5em;
+
+                        li {
+                            margin-right: 2em;
+                        }
+                    }
+                }
+                
+                ul{
+                    .after;
+                    
+                    li{
+                        clear: both;                        
+                        .after;
+                    }
+                }
+            }
+            &:first-child{
+                li{
+                    border-left: 0;
+                }
+            }  
+        }
+    }
+}
+
+#shoper-foot {
+    text-align: center;
+    background-color: @multiselectBg;
+    padding: 5px 0;
+}
+
+.price i {
+    font-style: normal;
+}
+
+.progress-bar {
+    background-color: #fff;
+    height: 1em;
+    position: relative;
+
+    &::after {
+        content: attr(data-progress) "/" attr(data-progress-max);
+        text-align: right;
+        display: block;
+        font-size: 0.9em;
+        margin-top: -1.2em;
+        margin-right: 0.3em;
+    }
+
+    &__bar {
+        margin-top: 0.5em;
+        transition: width 0.2s ease-in;
+        display: block;
+        height: 100%;
+        background-color: @maincolor;
+        width: 0;
+    }
+}

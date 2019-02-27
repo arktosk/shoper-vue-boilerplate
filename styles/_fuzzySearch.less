@@ -1,0 +1,75 @@
+@fuzzySearchListContainerBorderColor: #d8d8d8;
+@fuzzySearchListContainerBgColor: #ffffff;
+@fuzzySearchListItemBorderColor: #d8d8d8;
+@fuzzySearchListItemHover: #ebebeb;
+@fuzzySearchListItemSelected: #d8d8d8;
+@fuzzySearchInputBorderColor: #d8d8d8;
+@fuzzySearchInputIconColor: #d8d8d8;
+
+.fuzzy-search {
+	position: relative;
+
+	&_always-visible {
+		position: static;
+
+		.fuzzy-search__list-container {
+			position: static;
+		}
+	}
+
+	&__list {
+		&-container {
+			position: absolute;
+			left: 0;
+			top: 100%;
+			border: 1px solid @fuzzySearchListContainerBorderColor;
+			border-top: none;
+			z-index: 10000;
+			background-color: @fuzzySearchListContainerBgColor;
+
+			&__hide {
+				display: none;
+			}
+		}
+
+		&-item {
+			border-top: 1px solid @fuzzySearchListItemBorderColor;
+
+			&:first-child {
+				border-top: none;
+			}
+
+			&:hover {
+				background: @fuzzySearchListItemHover;
+				cursor: pointer;
+			}
+
+			&__selected {
+				background: @fuzzySearchListItemSelected;
+			}
+		}
+	}
+
+	&__search {
+		width: 100%;
+		flex-basis: 100%;
+		border: none;
+		padding: 0.1em;
+
+		&-wrapper {
+			display: flex;
+			border: 1px solid @fuzzySearchInputBorderColor;
+		}
+
+		&-icon {
+			flex-basis: 10%;
+			display: block;
+			font-size: 2em;
+			padding: 0.25em 0.1em;
+			color: @fuzzySearchInputIconColor;
+			cursor: pointer;
+			text-align: center;
+			content: "\f00e";
+		}
+	}
+}

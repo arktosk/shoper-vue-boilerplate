@@ -1,0 +1,227 @@
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.relative {
+    position: relative;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.px1 {
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border-width: 0;
+    vertical-align: middle;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.block {
+    display: block;
+}
+
+.inline {
+    display: inline;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.none {
+    display: none !important;
+}
+
+.overflow {
+    overflow: hidden;
+}
+
+.px1{
+    display: none;
+    vertical-align: middle;
+}
+
+.clearfix {
+    .clearfixm();
+}
+
+hr.separator {
+    border-width: 1px 0 0 0;
+    border-color: @borderColor;
+    border-style: solid;
+    margin: 1em 0;
+}
+
+/* Buttons */
+
+.btn {
+    display: inline-block;
+    padding: 0.35em 0.85em;
+    margin: 0;
+    font-size: 1.15em;
+    line-height: 1.35;
+    color: @linkBasicColor;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #b1b1b1;
+    background-color: @borderColor;
+    position: relative;
+    text-transform: lowercase;  
+    text-decoration: none;
+
+    &:hover {
+        .transition(background-color 0.3s linear);
+
+        color: @colorWhite;
+        background-color: @buttonHover;
+        border-color: @buttonHover;
+    }
+
+    &:focus, &:active {
+        .transition(background-color 0.1s linear);
+
+        color: @colorWhite;
+        background-color: @colorBlack;
+        border-color: @colorBlack;
+    }
+
+    &.btn-red {
+        background-color: @maincolor;
+        border: 1px solid @maincolor;
+        color: @colorWhite; 
+
+        &:hover {
+            background-color: @buttonHover;
+            border-color: @buttonHover;
+        }
+    }
+
+    &.btn-small {
+        font-size: 1em;
+        padding: 0.3em 0.6em; 
+    }
+
+    &.left {
+        margin-left: 0;
+    }
+
+    &.right {
+        margin-right: 0;
+    }
+
+    &.btn-login-facebook {
+        background-color: #4267b2;
+        color: #fff;
+        border: none;
+        padding: 0.5em 0.85em;
+        min-width: 206px;
+        border-radius: 4px;
+
+        &::before {
+            font-family: 'rwd-custom';
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            content: "\e900";
+            font-size: 1.6rem;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+    }
+
+    &.btn-login-google {
+        padding: 0.5em 0.85em;
+        color: #757575;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+        border-radius: 1px;
+        background-color: #fff;
+        border: none;
+        min-width: 206px;
+
+        &::before {
+            content: '';
+            height: 20px;
+            width: 20px;
+            background: url('../images/google-login.png') no-repeat;
+            display: inline-block;
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+    }
+
+    &.btn-inactive {
+        border-color: #929292;
+        background-color: #929292;
+    }
+}
+
+.loader {
+    .transition(all 0.4s linear);
+
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+        .transition(all 0.4s linear);
+
+        display: inline-block;
+        font-family: FontAwesome;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-animation: spin 2s infinite linear;
+        -moz-animation: spin 2s infinite linear;
+        -o-animation: spin 2s infinite linear;
+        animation: spin 2s infinite linear;
+        content: "\f013";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        z-index: 99999 !important;
+        font-size: 2em;
+    }
+
+    &::before {
+        .transition(all 0.4s linear);
+
+        content: '' !important;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 99999 !important;
+    }
+}

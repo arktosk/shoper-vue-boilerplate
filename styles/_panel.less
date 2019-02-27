@@ -1,0 +1,115 @@
+.box_login{
+    .login-form{
+        label{
+            display: block;
+        }
+    }
+}
+
+h4.addresses, h4.products {
+	margin-bottom: 0.5em;
+}
+
+.addresses {
+	li {
+		margin-bottom: 1em;
+
+		&.even {
+			padding: 0 1em;
+		}
+
+		&.odd {
+			padding: 1em;
+			border-top: 1px solid @greyFont;
+			border-bottom: 1px solid @greyFont;
+			background-color: @multiselectBg;
+		}
+
+		.links {
+			margin-top: 1em;
+
+			a {
+				padding: 0.4em;
+				font-size: 1em;
+			}
+		}
+	}
+}
+
+.address {
+	li {
+		float: left;
+		width: 50%;
+
+		&:first-child {
+			width: 48%;
+			margin-right: 2%;
+		}
+	}
+}
+
+.favourites {
+    thead {
+        td {
+            background-color: @maincolor;
+            color: @colorWhite;
+        }
+	}
+
+	.btn {
+		margin: 0.2rem 0;
+	}
+
+    .actions {
+        width: 21em;
+        text-align: center;
+        
+        .availability-notifier-container, .availability-notifier-unsubscribe-container {
+            display: inline;
+        }
+    }
+}
+
+.details {
+	font-size: 1.1em;
+}
+
+.invoice {
+	a {
+		color: @maincolor;
+		cursor: pointer;
+		
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
+
+table.products {
+	margin-bottom: 1em;
+
+	td {
+		&.value {
+			font-size: 1.2em;
+			color: @maincolor;
+		}
+	}
+
+	tfoot {
+		td {
+			text-align: right;
+		}
+	}
+
+	.price, .sum {
+		text-align: right;
+	}
+
+	.quantity {
+		text-align: center;
+	}
+}
+
+.trace {
+	text-decoration: underline;
+}

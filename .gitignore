@@ -1,0 +1,14 @@
+# dependencies
+node_modules
+package-lock.json
+
+# misc
+.env
+
+# Project mockups in Adobe Photoshop files.
+*.psd
+*.psb
+
+# Precompiled and transpiled files.
+styles/*-*-by-getecom-pl.css
+js/*-*-by-getecom-pl.webpack.js

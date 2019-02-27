@@ -1,0 +1,68 @@
+.alert {
+    padding: 15px;
+    margin: 1em 0 0.5em;
+    background-color: @alertBg;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    border-color: @borderColor;
+    position: relative;
+
+    &.alert-success {
+        background-color: @alertBgSuccess;
+        border-color: @alertSuccessColor;
+        color: @alertSuccessColor;
+
+        .close {
+            span {
+                color: darken(@alertSuccessColor, 10%);
+            }
+        }
+    }
+
+    &.alert-info {
+        background-color: @alertBgInfo;
+        border-color: @alertInfoColor;
+    }
+
+    &.alert-warning {
+        background-color: @alertBgWarning;
+        border-color: @alertWarningColor;
+        color: @alertWarningFont;
+
+        .close {
+            color: @alertWarningFont;
+        }
+    }
+
+    &.alert-error {
+        background-color: @alertBgError;
+        border-color: @alertErrorColor;
+        color: @alertErrorColor;
+
+        .close {
+            color: @alertErrorColor;
+        }
+    }
+
+    .close {
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        line-height: 22px;
+        color: @linkBasicColor;
+        padding: 0;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        font-size: 1em;
+        vertical-align: bottom;
+    }
+
+    .row {
+        display: inline-block;
+    }
+}
+
+.error {
+    color: @alertErrorColor;
+}
