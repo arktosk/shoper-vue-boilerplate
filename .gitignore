@@ -4,6 +4,8 @@ package-lock.json
 
 # misc
 .env
+.vscode
+.shoper
 
 # Project mockups in Adobe Photoshop files.
 *.psd
