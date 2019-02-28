@@ -18,16 +18,17 @@ const mode = process.env.BUILD_MODE || 'production'; // "production" | "developm
 const projectName = process.env.PROJECT_NAME || 'template';
 
 const entryFiles = {}
-for (const entryFilePath of glob.sync(`./js/${projectName}/*.js`)) {
+for (const entryFilePath of glob.sync(`./src/js/${projectName}/*.js`)) {
   entryFiles[path.basename(entryFilePath, '.js')] = entryFilePath
 }
+
 
 let config = {
   entry: entryFiles,
   mode: mode,
   output: {
-    path: path.resolve(__dirname, 'js'),
-    publicPath: '/js/',
+    path: path.resolve(__dirname, 'src/js'),
+    publicPath: '/src/js/',
     filename: `${projectName}-[name].webpack.js`,
   },
   resolve: {
