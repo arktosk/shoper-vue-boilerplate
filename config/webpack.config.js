@@ -11,6 +11,8 @@ import glob                from 'glob';
 import UglifyJsPlugin      from 'uglifyjs-webpack-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
 
+import paths from './paths.config';
+
 const env = process.env.NODE_ENV;
 
 dotenv.config();
@@ -27,8 +29,8 @@ let config = {
   entry: entryFiles,
   mode: mode,
   output: {
-    path: path.resolve(__dirname, 'src/js'),
-    publicPath: '/src/js/',
+    path: path.resolve(paths.templateBuild, './js'),
+    publicPath: paths.templateBuild,
     filename: `${projectName}-[name].webpack.js`,
   },
   resolve: {

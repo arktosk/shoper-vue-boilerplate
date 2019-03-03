@@ -8,6 +8,10 @@
     "serve": "gulp",
     "help": "gulp --tasks"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arktosk/shoper-vue-boilerplate.git"
+  },
   "author": "Arkadiusz Krauzowicz | cube11",
   "license": "MIT",
   "dependencies": {
@@ -18,8 +22,10 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
+    "acorn": "^6.1.1",
     "babel-loader": "^8.0.5",
     "browser-sync": "^2.26.3",
+    "css-loader": "^2.1.0",
     "dotenv": "^6.2.0",
     "glob": "^7.1.3",
     "gulp": "^4.0.0",
@@ -36,9 +42,17 @@
     "gulp-using": "^0.1.1",
     "gulp-util": "^3.0.8",
     "gulp-webdav-sync": "^2.0.3",
+    "map-stream": "0.0.7",
+    "memory-fs": "^0.4.1",
+    "through": "^2.3.8",
+    "through2": "^3.0.1",
     "uglifyjs-webpack-plugin": "^2.1.2",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-fs": "^3.0.3",
+    "vinyl-source-stream": "^2.0.0",
     "vue-loader": "^15.6.4",
     "webpack": "^4.29.5",
-    "webpack-stream": "^5.2.1"
+    "webpack-stream": "^5.2.1",
+    "yargs": "^13.2.1"
   }
 }

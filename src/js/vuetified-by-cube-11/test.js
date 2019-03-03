@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
         el: '#box_custom3',
         data: {
           seen: true
-        },
+        }, 
         render(h) { return h('div', this.seen) }
       })
-    console.log('test file stream send!')
+    console.log('test file stream send second!')
 })
