@@ -1,12 +1,10 @@
 import gulp from 'gulp';
-import tap from 'gulp-tap';
 import less from 'gulp-less';
 import sourcemaps from 'gulp-sourcemaps'
 import autoprefixer from 'gulp-autoprefixer'
 import combineMQ from 'gulp-combine-mq'
 import cleanCSS from 'gulp-clean-css'
 
-import cache from '../utilities/cache'
 import transformStream from '../utilities/transformStream';
 
 /**
