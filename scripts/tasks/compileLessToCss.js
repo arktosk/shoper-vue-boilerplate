@@ -7,6 +7,7 @@ import combineMQ from 'gulp-combine-mq'
 import cleanCSS from 'gulp-clean-css'
 
 import cache from '../utilities/cache'
+import transformStream from '../utilities/transformStream';
 
 /**
  * Process Less files, autoprefix them and clean final CSS.
@@ -30,12 +31,7 @@ const compileLessToCss = (done) => {
         .pipe(combineMQ())
         .pipe(cleanCSS())
         .pipe(sourcemaps.write())
-        .pipe(tap((file) => {
-            file.dirname = `${file.cwd}/build/styles`;
-            file.base = `${file.cwd}/build`;
-            file.stem = `${process.env.PROJECT_NAME}-${file.stem}`;
-            cache.add(file);
-        }));
+        .pipe(transformStream());
 }
 compileLessToCss.displayName = `build:css`;
 compileLessToCss.description = `Process Less files, autoprefix them and clean final CSS.`;
