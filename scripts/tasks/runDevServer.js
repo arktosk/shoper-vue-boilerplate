@@ -19,7 +19,7 @@ const runDevServer = (done) => {
                 '"use strict";\nconsole.log("I am the new one!");\n'),
         ],
     });
-    done()
+    devServer.emitter.on("init", () => done());
 }
 runDevServer.displayName = `server:run`
 runDevServer.description = `Initialize instance of Browser Sync server in proxy mode to display shop page.`

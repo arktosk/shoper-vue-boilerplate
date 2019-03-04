@@ -29,7 +29,8 @@ class Cache {
     getFilesStream() {
         const files = {};
         for (let i = 0 ; i < this._queue.length; i++) {
-            files[this._queue[i]] = this._memory[this._queue[i]];
+            const fileName = this._queue[i];
+            files[fileName] = this._memory[fileName];
         }
         this._queue = [];
         return fileStream(files);
