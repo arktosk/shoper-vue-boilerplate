@@ -32,22 +32,24 @@ watchJS.description = `On every JS files change transpile new webpack bundle.`;
  */
 const watchLESS = () => {
     return gulp
-        .watch([`./src/styles/${process.env.PROJECT_NAME}/**/*.less`], compileLessToCss);
+        .watch([`./src/styles/${process.env.PROJECT_NAME}/**/*.less`], gulp.series(compileLessToCss, task2));
 }
 watchLESS.displayName = `watch:less`;
 watchLESS.description = `On every LESS files change build new bundled CSS file.`;
 
 const watchAll = gulp.series(
-        gulp.parallel(
-            transpileES6,
-            compileLessToCss
-        ),
-        runDevServer, 
-        gulp.parallel(
-            watchJS,
-            watchLESS
-        )
+    gulp.parallel(
+        transpileES6,
+        compileLessToCss
+    ),
+    runDevServer, 
+    gulp.parallel(
+        watchJS,
+        watchLESS
     )
+);
+watchAll.displayName = `watch`;
+watchAll.description = `Start watching template files for any changes.`;
 
 export {
     watchAll as default,
