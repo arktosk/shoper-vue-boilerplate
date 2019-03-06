@@ -12,6 +12,12 @@ import { minifyImage, minifyImages } from './tasks/minifyImages';
 
 import webDavConfig from '../config/webdav.config';
 
+const MODE = {
+    SAFE: Symbol('safe'),
+    VIRTUAL: Symbol('virtual'),
+    SYNC: Symbol('sync'),
+}
+
 const deployFiles = function (done) {
     return cache.getFilesStream()
         .pipe(plumber())
@@ -56,6 +62,19 @@ const watchImages = () => {
 }
 watchImages.displayName = `watch:img`;
 watchImages.description = `On every image change minify them.`;
+
+const watchSmarty = () => {
+    const watchCallback = (path) => {
+        return transformSmartyTemplate(path)
+            .pipe(webdav(webDavConfig()))
+    };
+    return gulp
+        .watch([`./src/images/**/*.{gif,jpg,png}`])
+        // TODO: Find why after creating a new file "gulp-webdav-sync" throws Error [ERR_MULTIPLE_CALLBACK]: Callback called multiple times?
+        .on('change', watchCallback);
+}
+watchSmarty.displayName = `watch:tpl`;
+watchSmarty.description = `Watch changes on smarty template files.`;
 
 let watchAll;
 /**

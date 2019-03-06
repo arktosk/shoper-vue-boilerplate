@@ -32,7 +32,7 @@ if ( !process.env.WEBDAV_HOSTNAME || !process.env.WEBDAV_USER || !process.env.WE
  */
 process.env = process.env || {};
 if (argv.development || (argv.mode && argv.mode === 'development')) process.env.NODE_ENV = 'development';
-else process.env.NODE_ENV = 'prodution';
+else process.env.NODE_ENV = 'production';
 
 if (!process.env.PROJECT_NAME) process.env.PROJECT_NAME = 'template-bootstrap-by-cube-11';
 

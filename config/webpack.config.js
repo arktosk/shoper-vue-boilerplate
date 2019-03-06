@@ -1,8 +1,3 @@
-/**
- * Webpach configuration for transpiling Java Script.
- * 
- * @author Arkadiusz Krauzowicz | GETecom.pl
- */
 import dotenv              from 'dotenv';
 import webpack             from 'webpack';
 import path                from 'path';

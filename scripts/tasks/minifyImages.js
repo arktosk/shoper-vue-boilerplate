@@ -8,13 +8,9 @@ const minifyImage = (path) => {
         .pipe(imagemin())
         .pipe(transformStream('./build/images'));
 };
-minifyImage.displayName = `minify:img`;
-minifyImage.description = `Optimize and minify image.`;
 
 const minifyImages = (done) => {
-    return gulp.src([`./src/images/**/*.{gif,jpg,png}`])
-        .pipe(imagemin())
-        .pipe(transformStream('./build/images'))
+    return minifyImage(`src/images/**/*.{gif,jpg,png}`)
 };
 minifyImages.displayName = `minify:img:all`;
 minifyImages.description = `Optimize and minify all images.`;
