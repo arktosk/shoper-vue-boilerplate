@@ -16,12 +16,8 @@ const deployFiles = function (done) {
     return cache.getFilesStream()
         .pipe(plumber())
         // .pipe(webdav(webDavConfig()))
-        // TODO - Investigate why css injecting do not work!
-        // .pipe(devServer.stream())
-        .on('end', () => {
-            devServer.reload()
-            return done
-        });
+        .pipe(devServer.stream())
+        .on('end', done);
 }
 deployFiles.displayName = `deploy:cache`;
 deployFiles.description = `Deploy all cached files.`;

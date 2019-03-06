@@ -31,7 +31,6 @@ const transformStream = (buildPath = './build', memorize = true) => {
         if (['.css', '.js'].indexOf(file.extname) !== -1)
             file.stem = `${process.env.PROJECT_NAME}-${file.stem}`;
 
-        console.log(file.basename);
         if (memorize) cache.add(file);
     })
 }

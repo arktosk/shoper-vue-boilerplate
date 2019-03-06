@@ -1,5 +1,6 @@
 import { argv } from 'yargs';
 import BrowserSync   from 'browser-sync';
+// import url from 'url';
 
 import cache from '../utilities/cache'
 
@@ -39,10 +40,19 @@ runDevServer.flags = {
  */
 const replaceFileContentMiddleware = () => {
     return  (req, res, next) => {
+        /**
+         * Using new URL instead of req.originalUrl to extract pure pathname without any search or hash string.
+         * 
+         * E.g. Browser Sync after css injection adding some search query string into <link /> tag
+         * and it not working well while using virtual files, so to solve it this script should
+         * also overwriting core middleware and it does.
+         */
+        const url = new URL(req.url, 'http://localhost:3000');
+        
         /** Filter early files by template main directory. */
-        if (req.originalUrl.indexOf('/skins/user/rwd_shoper_1/') === -1) return next();
+        if (url.pathname.indexOf(`/skins/user/rwd_shoper_1/`) === -1) return next();
         /** Sanitize request url to mach cache schema. */
-        let relativePath = req.originalUrl.replace('/skins/user/rwd_shoper_1/', '').replace('/', '\\');
+        let relativePath = url.pathname.replace(`/skins/user/rwd_shoper_1/`, '').replace('/', '\\');
 
         if (typeof cache._memory[relativePath] === 'undefined')  return next();
 
