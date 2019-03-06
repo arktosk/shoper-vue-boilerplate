@@ -5,6 +5,7 @@ import MemoryFileSystem from 'memory-fs';
 
 import cache from '../utilities/cache';
 
+import paths from '../../config/paths.config';
 import webpackConfig from '../../config/webpack.config';
 
 /**
@@ -43,7 +44,7 @@ const transpileES6 = (done) => {
             // Add file to cache.
             cache.add(new Vinyl({
                 // cwd: '/',
-                base: outputPath,
+                base: paths.templateBuild,
                 path: path.join(outputPath, fileName),
                 contents: src
             }));

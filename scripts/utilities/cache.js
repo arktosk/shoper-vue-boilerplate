@@ -1,3 +1,4 @@
+import path from 'path';
 import paths from '../../config/paths.config';
 import fileStream from './fileStream';
 
@@ -17,10 +18,16 @@ class Cache {
      * @param {Vinyl} file - Vinyl file instance.
      */
     add(file) {
-        const relativePath = file.path.replace(paths.templateSrc, '');
+        const relativePath = path.relative(paths.templateBuild, file.path);
         if (this._queue.indexOf(relativePath) !== -1) this._queue.splice(this._queue.indexOf(relativePath), 1);
         this._queue.push(relativePath);
         this._memory[relativePath] = file;
+    }
+    /**
+     * Clear queue of recently added files.
+     */
+    clearQueue() {
+        this._queue = [];
     }
     /**
      * Create stream from cached files.

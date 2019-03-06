@@ -14,3 +14,6 @@ package-lock.json
 # Precompiled and transpiled files.
 styles/*-*.css
 js/*-*.webpack.js
+
+# Project build directory
+build

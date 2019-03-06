@@ -4,8 +4,9 @@
   "description": "Shoper template boilerplate ready for use Vue.js framework",
   "main": "gulpfile.babel.js",
   "scripts": {
-    "start": "gulp",
-    "serve": "gulp",
+    "start": "gulp watch --open",
+    "start:fresh": "gulp watch -fresh",
+    "serve": "gulp watch",
     "help": "gulp --tasks"
   },
   "repository": {

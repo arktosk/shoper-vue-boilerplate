@@ -23,13 +23,14 @@ const compileLessToCss = (done) => {
     return gulp
         /** Add source maps only in development mode. */
         .src(stylesGlob)
-        .pipe(sourcemaps.init())
+        // .pipe(sourcemaps.init())
         .pipe(less())
+        .pipe(gulp.src(`./src/styles/${process.env.PROJECT_NAME}/*.css`))
         .pipe(autoprefixer())
-        .pipe(combineMQ())
-        .pipe(cleanCSS())
-        .pipe(sourcemaps.write())
-        .pipe(transformStream());
+        // .pipe(combineMQ())
+        // .pipe(cleanCSS())
+        // .pipe(sourcemaps.write())
+        .pipe(transformStream('./build/styles'));
 }
 compileLessToCss.displayName = `build:css`;
 compileLessToCss.description = `Process Less files, autoprefix them and clean final CSS.`;

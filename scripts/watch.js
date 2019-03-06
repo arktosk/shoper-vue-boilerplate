@@ -1,19 +1,30 @@
 import gulp from 'gulp';
+import plumber from 'gulp-plumber';
 import webdav from 'gulp-webdav-sync';
+import { argv } from 'yargs';
 
 import cache from './utilities/cache';
 
-import runDevServer from './tasks/runDevServer';
+import runDevServer, { devServer } from './tasks/runDevServer';
 import compileLessToCss from './tasks/compileLessToCss';
 import transpileES6 from './tasks/transpileES6';
+import { minifyImage, minifyImages } from './tasks/minifyImages';
 
 import webDavConfig from '../config/webdav.config';
 
-const task2 = function (done) {
+const deployFiles = function (done) {
     return cache.getFilesStream()
-        .pipe(webdav(webDavConfig()))
-        .on('end', done);
+        .pipe(plumber())
+        // .pipe(webdav(webDavConfig()))
+        // TODO - Investigate why css injecting do not work!
+        // .pipe(devServer.stream())
+        .on('end', () => {
+            devServer.reload()
+            return done
+        });
 }
+deployFiles.displayName = `deploy:cache`;
+deployFiles.description = `Deploy all cached files.`;
 
 /**
  * Transpile ES6 when any js file changes.
@@ -22,7 +33,7 @@ const watchJS = () => {
     return gulp.watch( [
         `!./src/js/${process.env.PROJECT_NAME}/*.webpack.js`,
         `./src/js/${process.env.PROJECT_NAME}/**/*.js`,
-    ], gulp.series(transpileES6, task2));
+    ], gulp.series(transpileES6, deployFiles));
 }
 watchJS.displayName = `watch:js`;
 watchJS.description = `On every JS files change transpile new webpack bundle.`;
@@ -32,24 +43,64 @@ watchJS.description = `On every JS files change transpile new webpack bundle.`;
  */
 const watchLESS = () => {
     return gulp
-        .watch([`./src/styles/${process.env.PROJECT_NAME}/**/*.less`], gulp.series(compileLessToCss, task2));
+        .watch([`./src/styles/${process.env.PROJECT_NAME}/**/*.less`], gulp.series(compileLessToCss, deployFiles));
 }
 watchLESS.displayName = `watch:less`;
 watchLESS.description = `On every LESS files change build new bundled CSS file.`;
 
-const watchAll = gulp.series(
-    gulp.parallel(
-        transpileES6,
-        compileLessToCss
-    ),
-    runDevServer, 
-    gulp.parallel(
-        watchJS,
-        watchLESS
-    )
-);
+const watchImages = () => {
+    const watchCallback = (path) => {
+        return minifyImage(path)
+            .pipe(webdav(webDavConfig()))
+    };
+    return gulp
+        .watch([`./src/images/**/*.{gif,jpg,png}`])
+        // TODO: Find why after creating a new file "gulp-webdav-sync" throws Error [ERR_MULTIPLE_CALLBACK]: Callback called multiple times?
+        .on('change', watchCallback);
+}
+watchImages.displayName = `watch:img`;
+watchImages.description = `On every image change minify them.`;
+
+let watchAll;
+/**
+ * Add fresh deploy tasks at first place of this task series.
+ */
+if (argv.fresh !== undefined || argv.tasks !== undefined || argv.T !== undefined) {
+    watchAll = gulp.series(
+        gulp.series(
+            transpileES6,
+            compileLessToCss,
+            minifyImages
+        ),
+        deployFiles,
+        runDevServer, 
+        gulp.parallel(
+            watchJS,
+            watchLESS,
+            watchImages
+        )
+    );
+} else {
+    watchAll = gulp.series(
+        gulp.series(
+            transpileES6,
+            compileLessToCss,
+            minifyImages
+        ),
+        deployFiles,
+        runDevServer,
+        gulp.parallel(
+            watchJS,
+            watchLESS,
+            watchImages
+        )
+    );
+}
 watchAll.displayName = `watch`;
 watchAll.description = `Start watching template files for any changes.`;
+watchAll.flags = {
+    '--fresh': 'reupload all files before watch.'
+};
 
 export {
     watchAll as default,

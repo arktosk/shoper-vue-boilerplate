@@ -29,9 +29,9 @@ let config = {
   entry: entryFiles,
   mode: mode,
   output: {
-    path: path.resolve(paths.templateBuild, './js'),
-    publicPath: paths.templateBuild,
-    filename: `${projectName}-[name].webpack.js`,
+    path: paths.templateBuild,
+    publicPath: 'skins/user/rwd_shoper_1/',
+    filename: `js/${projectName}-[name].webpack.js`,
   },
   resolve: {
     extensions: ['.js', '.vue'],

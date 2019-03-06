@@ -1,4 +1,8 @@
+import { argv } from 'yargs';
 import BrowserSync   from 'browser-sync';
+
+import cache from '../utilities/cache'
+
 import envConfig from '../../config/env.config';
 
 const devServer = BrowserSync.create()
@@ -6,38 +10,44 @@ const devServer = BrowserSync.create()
 /**
  * Initialize instance of Browser Sync server in proxy mode to display shop page.
  * 
- * @param {Function} done - Emmit end of a task.
+ * @param {Function} done - Emit end of a task.
  */
 const runDevServer = (done) => {
     devServer.init({
-        open: false, // false | 'local'
+        open: argv.open !== undefined ? 'local' : false,
         // Note that proxy uses non SSL protocol, because of missing cert for localhost.
         proxy: `http://${process.env.WEBDAV_HOSTNAME}/`,
         middleware: [
-            repleaceFileContentMiddleware(
-                `/skins/user/rwd_shoper_1/js/vuetified-by-cube-11-test.webpack.js`,
-                '"use strict";\nconsole.log("I am the new one!");\n'),
+            replaceFileContentMiddleware(),
         ],
     });
-    devServer.emitter.on("init", () => done());
+    devServer.emitter.on("init", () => {
+        cache.clearQueue();
+        done();
+    });
 }
 runDevServer.displayName = `server:run`
 runDevServer.description = `Initialize instance of Browser Sync server in proxy mode to display shop page.`
 runDevServer.flags = {
-    '-revoke': 'do not open new window or tab in a browser.'
+    '--open': 'open new window or tab in a browser.'
 };
 
 /**
  * Helper function for creating middleware that replace project styles and scripts.
  * 
- * @param {*} fileName 
- * @param {*} newFileContent 
- * @returns {Function} - Middleware
+ * @returns {Function} - Server middleware handler.
  */
-const repleaceFileContentMiddleware = (fileName, newFileContent) => {
+const replaceFileContentMiddleware = () => {
     return  (req, res, next) => {
-        if (req.originalUrl === fileName) res.end(newFileContent);
-        else next();
+        /** Filter early files by template main directory. */
+        if (req.originalUrl.indexOf('/skins/user/rwd_shoper_1/') === -1) return next();
+        /** Sanitize request url to mach cache schema. */
+        let relativePath = req.originalUrl.replace('/skins/user/rwd_shoper_1/', '').replace('/', '\\');
+
+        if (typeof cache._memory[relativePath] === 'undefined')  return next();
+
+        /** If that file is already cached replace response. */
+        res.end(cache._memory[relativePath].contents);
     }
 };
 
