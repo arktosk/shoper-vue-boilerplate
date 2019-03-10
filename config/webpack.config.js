@@ -23,13 +23,14 @@ for (const entryFilePath of glob.sync(`./src/js/${projectName}/*.js`)) {
 let config = {
   entry: entryFiles,
   mode: mode,
+  devtool: "eval",
   output: {
     path: paths.templateBuild,
     publicPath: 'skins/user/rwd_shoper_1/',
     filename: `js/${projectName}-[name].webpack.js`,
   },
   resolve: {
-    extensions: ['.js', '.vue'],
+    extensions: ['.js', '.json', '.vue'],
   },
   module: {
     rules: [
@@ -42,6 +43,14 @@ let config = {
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: /node_modules/,
+    },
+    {
+      test: /\.less$/,
+      use: [
+        'vue-style-loader',
+        'css-loader',
+        'less-loader'
+      ]
     }]
   },
   optimization: {
@@ -54,7 +63,7 @@ let config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      __MODE__: JSON.stringify(mode),
+      // __MODE__: JSON.stringify(mode),
     }),
     new VueLoaderPlugin()
   ],

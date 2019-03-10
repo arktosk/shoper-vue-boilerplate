@@ -22,7 +22,7 @@ compiler.outputFileSystem = fs;
  * 
  * @param {Function} done - Callback function, which determine end of the task.
  * 
- * Based on webpack node API documentation and solution foud at webpack-to-memory package.
+ * Based on webpack node API documentation and solution found at webpack-to-memory package.
  * @see https://webpack.js.org/api/node/#custom-file-systems
  * @see https://github.com/knpwrs/webpack-to-memory
  */
@@ -30,26 +30,25 @@ const transpileES6 = (done) => {
     compiler.run((error, stats) => {
         if (error) return done ? done(error) : console.log(error)
 
-        const files = Object.keys(stats.compilation.assets);
-        const outputPath = compiler.outputPath;
+        const assets = stats.compilation.assets
+        const files = Object.keys(assets);
 
         files.map(fileName => {
-            if (!stats.compilation.assets[fileName].emitted) return;
-            let filePath = fs.join(outputPath, fileName);
-            if (filePath.indexOf('?') !== -1) {
-                filePath = filePath.split('?')[0];
-            }
-            const src = fs.readFileSync(filePath);
+            if (!assets[fileName]._value) return
+
+            /**
+             * Get Raw Source of compiled files instead of using MemoryFileSystem.
+             */
+            const fileRawSource = assets[fileName]._value
             
-            // Add file to cache.
-            cache.add(new Vinyl({
-                // cwd: '/',
+            const vinylFile = new Vinyl({
                 base: paths.templateBuild,
-                path: path.join(outputPath, fileName),
-                contents: src
-            }));
+                path: path.join(paths.templateBuild, fileName),
+                contents: Buffer.from(fileRawSource)
+            })
+
+            cache.add(vinylFile);
         })
-        
         done();
     });
 }

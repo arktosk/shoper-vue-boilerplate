@@ -4,9 +4,12 @@
   "description": "Shoper template boilerplate ready for use Vue.js framework",
   "main": "gulpfile.babel.js",
   "scripts": {
-    "start": "gulp watch --open",
-    "start:fresh": "gulp watch -fresh",
-    "serve": "gulp watch",
+    "start": "npm run serve",
+    "serve": "gulp serve --development",
+    "build": "gulp build --production",
+    "build:dev": "gulp build --development",
+    "deploy": "gulp deploy --production",
+    "deploy:dev": "gulp deploy --development",
     "help": "gulp --tasks"
   },
   "repository": {
@@ -16,7 +19,7 @@
   "author": "Arkadiusz Krauzowicz | cube11",
   "license": "MIT",
   "dependencies": {
-    "vue": "^2.6.7",
+    "vue": "^2.6.8",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
@@ -44,6 +47,8 @@
     "gulp-using": "^0.1.1",
     "gulp-util": "^3.0.8",
     "gulp-webdav-sync": "^2.0.3",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
     "map-stream": "0.0.7",
     "memory-fs": "^0.4.1",
     "through": "^2.3.8",
@@ -53,6 +58,8 @@
     "vinyl-fs": "^3.0.3",
     "vinyl-source-stream": "^2.0.0",
     "vue-loader": "^15.6.4",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.8",
     "webpack": "^4.29.5",
     "webpack-stream": "^5.2.1",
     "yargs": "^13.2.1"

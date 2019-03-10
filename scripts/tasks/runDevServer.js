@@ -1,6 +1,5 @@
 import { argv } from 'yargs';
 import BrowserSync   from 'browser-sync';
-// import url from 'url';
 
 import cache from '../utilities/cache'
 
@@ -22,7 +21,7 @@ const runDevServer = (done) => {
             replaceFileContentMiddleware(),
         ],
     });
-    devServer.emitter.on("init", () => {
+    devServer.emitter.on("init", (bs) => {
         cache.clearQueue();
         done();
     });

@@ -24,4 +24,4 @@ const fileStream = function (files) {
     return stream;
 }
 
-export default fileStream
+export default fileStream;

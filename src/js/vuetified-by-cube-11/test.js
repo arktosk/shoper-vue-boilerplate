@@ -1,14 +1,14 @@
 import Vue from 'vue';
+import Slider from './boxes/slider';
+
+Vue.config.devtools = true
 
 document.addEventListener('frontAPIReady', console.log.bind(console, 'Front API loaded!'))
 document.addEventListener('DOMContentLoaded', () => {
     new Vue({
         name: 'Hello World',
-        el: '#box_custom3',
-        data: {
-          content: 'This is new content rendered by vue.js'
-        }, 
-        render(h) { return h('div', this.content) }
-      })
+        render: (h) => h(Slider)
+    }).$mount("#box_custom3")
     console.log('test file stream send second!')
+    
 })

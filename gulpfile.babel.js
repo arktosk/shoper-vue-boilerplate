@@ -8,10 +8,10 @@
  * @license   MIT
  * @copyright Arkadiusz Krauzowicz
  */
-import runDevServer from './scripts/tasks/runDevServer';
-import watch from './scripts/watch';
+import serve from './scripts/serve';
+import build from './scripts/build';
 
 export {
-    runDevServer as default,
-    watch,
+    serve,
+    build,
 }
