@@ -1,14 +1,27 @@
 # Vuetified Shoper Template
 
-Template bootstrap for using [Vue.js](https://vuejs.org/) with Shoper platform, created by [cebe11](https://cube11.pl/) team.
+Template bootstrap for using [Vue.js](https://vuejs.org/) with Shoper platform, created by [cebe11](https://cube11.pl/).
 
-<!-- Production version of template: [devshop-829714.shoparena.pl](https://devshop-829714.shoparena.pl/). -->
+This setup allow you to freely work with [Shoper](https://www.shoper.pl/) SaaS platform. Because of implemented file synchronization by WebDAV protocol,
+every file change will be immediately deployed to the server. However, there is also, safe mode to work on production instance. In safe mode every
+change will be displayed only on local server, but nothing will be send to server, so you can develop new features without worry you ruin something.
+
+Main feature of this setup is live preview of every change. This can be achieved by setting live server with proxy to SaaS instance, and injecting or
+replacing content by newly compiled files.
+
+#### Table of content
+
+1. [Getting Started](#getting-started)
+2. [Project structure](#project-structure)
+2. [Theme development](#theme-development)
+2. [Building final package](#building-final-package)
+2. [Deploying project](#deploying-project)
 
 ## Getting Started
 
-Project created using `gulp` and WebDAV connection to Shoper servers. Styles are preprocessed by gulp, and for JavaScript ES6 or vue files support added Webpack.
+To use full features of this setup you should have minimal knowledge of node.js environment and create proper configuration file.
 
-Instalation guide:
+**Installation guide**:
 
 1. Install npm dependencies
 2. Create `.env` file
@@ -20,17 +33,13 @@ Install all npm dependencies.
 npm install
 ```
 
-### Create `.env` file and establish WebDAV connection
+### Create environment configuration file
 
-Create `.env` file in main project directory and add all belowed credentials:
+Create `.env` file in main project directory and add all bellowed credentials:
 
 Specify project name:
 
 * `PROJECT_NAME` - (optional) used in directories name and final files name, if not specified will be used 'template' phrase
-
-You can specify `BUILD_MODE` parameter, otherwise build will be done in `production` mode:
-
-* `BUILD_MODE` - available "development" or "production" (default), "development" mode allows Logger module log every action and saves files with sourcemaps, "production" mode disable logs and final files will be minified without sourcemaps.
 
 Specify WebDAV connection credentials:
 
@@ -38,15 +47,15 @@ Specify WebDAV connection credentials:
 * `WEBDAV_HOSTNAME` - shop URL address without 'http://' and ending slashes
 * `WEBDAV_PORT` - (optional) use 443 otherwise WebDAV will not work
 * `WEBDAV_USER` - find in Shoper Template advanced settings
-* `WEBDAV_PASS` - find in Shoper Template advanced settings
+* `WEBDAV_PASSWORD` - find in Shoper Template advanced settings
 
 You can obtain them in Shoper admin panel in Template Advanced Settings page, after clicking "See more" in "For advanced" section. With Shoper WebDAV servers use port `443`. 
 
-When WebDAV **credentials didn't specified**, the deploy won't work.
+When WebDAV **credentials have not been specified**, the deploy won't work.
 
 ## Project structure
 
-Prepare folders similat to bellowed structure. You should manualy replace `[template]` by PROJECT_NAME variable from `.env` file.
+All source files are placed in 'src' directory. Remember that if you changed the PROJECT_NAME variable in `.env` file, then you should always change directories marked as `[template]` to the same name as environment variable. Otherwise, remove PROJECT_NAME from `.env` and keep `template` in directory names.
 
 * `boxes` - smarty template files for template modules
 * `images`
@@ -59,24 +68,24 @@ Prepare folders similat to bellowed structure. You should manualy replace `[temp
 * `styles` - CSS, Less and Sass files
     * `[template]` - \[template\] additional scripts
 
-## Using gulp
-
-By using gulp default task, there files will be complied and deployed on a fly.
+## Theme development
 
 ```
-gulp
+npm start
+npm run serve
 ```
 
-To obtain list of all available taskt use gulp command with flag `--tasks`
+## Building final package
 
 ```
-gulp --tasks
+npm run build
+npm run build:dev
 ```
 
-### Run WebDAV watch
 
-This watch updates files directly in template directory, so you can freely edit all *.tpl files on your machine and preview changes on server. Styles and JavaScript files are compiled/transpiled and moved to template directory so remember to add in `header.tpl` file this styles and scripts.
+## Deploying project
 
 ```
-gulp watch
+npm run deploy
+npm run deploy:dev
 ```
