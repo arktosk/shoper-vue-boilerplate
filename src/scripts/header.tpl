@@ -23,6 +23,7 @@
     {plugin module=shop template=pre-head}
     
     <link id="csslink" rel="stylesheet" type="text/css" href="{sfc type='css' id=$skin_id user=$user_css gallery=0 lang=$lang_full}" />
+    
     <!-- template-styles-needle -->
 
     <script type="text/javascript" src="{baseDir}/public/scripts/fastdom.min.js"></script>
