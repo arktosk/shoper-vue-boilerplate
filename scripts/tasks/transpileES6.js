@@ -34,17 +34,21 @@ const transpileES6 = (done) => {
         const files = Object.keys(assets);
 
         files.map(fileName => {
-            if (!assets[fileName]._value) return
+
+            /** Prepare file path. */
+            let filePath = fs.join(compiler.outputPath, fileName);
+            if (filePath.indexOf('?') !== -1)  filePath = filePath.split('?')[0];
 
             /**
-             * Get Raw Source of compiled files instead of using MemoryFileSystem.
+             * Get file Buffer source from MemoryFileSystem.
              */
-            const fileRawSource = assets[fileName]._value
+            const fileBufferSource = fs.readFileSync(filePath);
+            if (!fileBufferSource) return;
             
             const vinylFile = new Vinyl({
                 base: paths.templateBuild,
                 path: path.join(paths.templateBuild, fileName),
-                contents: Buffer.from(fileRawSource)
+                contents: fileBufferSource
             })
 
             cache.add(vinylFile);

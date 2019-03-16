@@ -6,12 +6,10 @@ import glob from 'glob';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import { VueLoaderPlugin } from 'vue-loader';
 
+import './env.config';
 import paths from './paths.config';
 
-const env = process.env.NODE_ENV;
-
 dotenv.config();
-const mode = process.env.BUILD_MODE || 'production'; // "production" | "development"
 const projectName = process.env.PROJECT_NAME || 'template';
 
 const entryFiles = {}
@@ -23,7 +21,7 @@ const internalCache = {}
 
 let config = {
     entry: entryFiles,
-    mode: mode,
+    mode: process.env.NODE_ENV,
     devtool: "eval",
     cache: internalCache,
     output: {
@@ -56,7 +54,7 @@ let config = {
         ]
     },
     optimization: {
-        minimize: (mode === 'production') ? true : false,
+        minimize: (process.env.NODE_ENV === 'production') ? true : false,
         minimizer: [
             new UglifyJsPlugin({
                 include: /\.js$/
